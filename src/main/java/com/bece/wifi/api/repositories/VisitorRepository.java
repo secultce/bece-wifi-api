@@ -7,5 +7,5 @@ import com.bece.wifi.api.entities.Visitor;
 
 @Repository
 public interface VisitorRepository extends JpaRepository<Visitor, Integer> {
-
+	Boolean existsByCpf(String cpf);
 }

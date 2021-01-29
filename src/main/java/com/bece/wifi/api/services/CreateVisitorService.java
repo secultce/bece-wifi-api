@@ -13,7 +13,19 @@ public class CreateVisitorService {
 	@Autowired
 	private VisitorRepository visitorRepository;
 	
-	public void execute(VisitorDTO visitorDTO) {
-		// Check how to create a custom method in the repository
+	public Visitor execute(VisitorDTO visitorDTO) {
+		String name = visitorDTO.getName();
+		String cpf = visitorDTO.getCpf();
+		
+		Boolean visitorExists 
+			= this.visitorRepository.existsByCpf(cpf);
+		
+		if (visitorExists) {
+			// https://www.baeldung.com/exception-handling-for-rest-with-spring
+		}
+		
+		Visitor visitor = new Visitor(name, cpf);
+		
+		return this.visitorRepository.save(visitor);
 	}
 }

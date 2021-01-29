@@ -38,10 +38,10 @@ public class VisitorController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<VisitorDTO> store(@Valid @RequestBody VisitorDTO visitorDTO) {
+	public ResponseEntity<Visitor> store(@Valid @RequestBody VisitorDTO visitorDTO) {
 		
-		// Visitor visitor = this.createVisitorService.execute(visitorDTO);
-		
-		return ResponseEntity.ok().body(visitorDTO);
+		Visitor visitor = this.createVisitorService.execute(visitorDTO);
+
+		return ResponseEntity.ok().body(visitor);
 	}
  }

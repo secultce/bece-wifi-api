@@ -37,6 +37,16 @@ public class Visitor implements Serializable {
 	@Column(name = "updated_at")
 	private Date updatedAt;
 	
+	public Visitor() {
+		
+	}
+	
+	public Visitor(String name, String cpf) {
+		super();
+		this.name = name;
+		this.cpf = cpf;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
