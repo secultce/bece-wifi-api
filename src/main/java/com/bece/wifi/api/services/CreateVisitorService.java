@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.bece.wifi.api.dto.VisitorDTO;
 import com.bece.wifi.api.entities.Visitor;
+import com.bece.wifi.api.exceptions.CPFAlreadyRegisteredRequestException;
 import com.bece.wifi.api.repositories.VisitorRepository;
 
 @Service
@@ -21,7 +22,7 @@ public class CreateVisitorService {
 			= this.visitorRepository.existsByCpf(cpf);
 		
 		if (visitorExists) {
-			// https://www.baeldung.com/exception-handling-for-rest-with-spring
+			throw new CPFAlreadyRegisteredRequestException("CPF já cadastrado!");
 		}
 		
 		Visitor visitor = new Visitor(name, cpf);

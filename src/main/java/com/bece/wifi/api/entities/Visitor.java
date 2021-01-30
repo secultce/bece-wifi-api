@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -81,6 +83,16 @@ public class Visitor implements Serializable {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+	@PrePersist
+	private void prePersist() {
+		this.createdAt = new Date();
+	}
+	
+	@PreUpdate
+	private void preUpdate() {
+		this.updatedAt = new Date();
 	}
 
 	@Override
