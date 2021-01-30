@@ -34,13 +34,13 @@ public class VisitorController {
 	private UpdateVisitorService updateVisitorService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<VisitorDTO> findAll() {
-		List<Visitor> list = this.visitorRepository.findAll();
+	public List<Visitor> index() {
+		List<Visitor> visitors = this.visitorRepository.findAll();
 		
-		List<VisitorDTO> listDto = list.stream()
-				.map(v -> new VisitorDTO(v)).collect(Collectors.toList());
+		// List<VisitorDTO> listDto = visitors.stream()
+		//  		.map(v -> new VisitorDTO(v)).collect(Collectors.toList());
 		
-		return listDto;
+		return visitors;
 	}
 	
 	@ResponseStatus(value = HttpStatus.CREATED)
