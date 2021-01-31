@@ -15,10 +15,12 @@ import javax.persistence.Table;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-@Entity
-@Table(name = "visitors")
-public class Visitor implements Serializable {
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Entity
+@Table(name = "users")
+public class User implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,7 +31,11 @@ public class Visitor implements Serializable {
 	private String name;
 	
 	@Column(nullable = false, unique = true)
-	private String cpf;
+	private String email;
+	
+	@JsonIgnore
+	@Column(nullable = false)
+	private String password;
 	
 	@CreatedDate
 	@Column(name = "created_at", nullable = false, updatable = false)
@@ -39,14 +45,16 @@ public class Visitor implements Serializable {
 	@Column(name = "updated_at")
 	private Date updatedAt;
 	
-	public Visitor() {
+	public User() {
 		
 	}
 	
-	public Visitor(String name, String cpf) {
+	public User(String name, String email, String password) {
 		super();
+		
 		this.name = name;
-		this.cpf = cpf;
+		this.email = email;
+		this.password = password;
 	}
 	
 	public Integer getId() {
@@ -61,12 +69,20 @@ public class Visitor implements Serializable {
 		this.name = name;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Date getCreatedAt() {
@@ -97,8 +113,7 @@ public class Visitor implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Visitor [id=" + id + ", name=" + name + ", cpf=" + cpf + ", createdAt=" + createdAt + ", updatedAt="
-				+ updatedAt + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", createdAt="
+				+ createdAt + ", updatedAt=" + updatedAt + "]";
 	}
-	
 }
